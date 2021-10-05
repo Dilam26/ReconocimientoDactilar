@@ -34,4 +34,13 @@ for dir in path:
 		#Escribir los arreglos en columnas de la matriz de entrenamiento
 		MTraining[:,column] = img_array[:]
 		column += 1
-		print(MTraining)
+
+
+#Calcular huella promedio por cada sub carpeta
+medio = []
+sum = 0
+for i in range(49):
+	for j in range(5):
+		sum += npy.sum(MTraining[:,i*5+j])
+	medio.append(sum/5)
+	sum = 0
