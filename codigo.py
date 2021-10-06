@@ -39,6 +39,7 @@ for dir in path:
 		#Escribir los arreglos en columnas de la matriz de entrenamiento
 		MTraining[:,column] = img_array[:]
 		column += 1
+
 #print(MTraining)
 
 
@@ -108,5 +109,6 @@ plt.title('HuellaPromedioP1')
 plt.xticks([]),plt.yticks([])
 #plt.show()
 """
+
 
 
