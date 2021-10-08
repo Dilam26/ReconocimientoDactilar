@@ -48,19 +48,19 @@ for dir in path:
 #medio = npy.zeros(shape =(resolution,5))
 medio=npy.empty([resolution, 49], dtype = float)
 sum = npy.zeros(shape =(resolution,1))
-for i in range(10):
+for i in range(49):
 	for j in range(5):
 		sum[:,0] += MTraining[:,(i*5+j)]
 		#medio.append(sum)
 	
-	print(sum[0][0])
+	#print(sum[0][0])
 	
 	medio[:,i] = (sum/5)[:,0]
 	sum = npy.zeros(shape=(resolution,1))
 print("")	
-print(MTraining[0][0])
+#print(MTraining[0][0])
 print("")
-print(medio[:,10])
+#print(medio[:,10])
 
 
 
@@ -94,21 +94,54 @@ print(col0)
 
 
 
-"""
+
 #print(MTraining[155])
 #print(medio.shape)
-print(npy.shape(medio))
-print(medio[0])
-print(MTraining[0][0])
+#print(npy.shape(medio))
+#print(medio[0])
+#print(MTraining[0][0])
 
-
+"""
 #Visualización del rostro promedio
-medio[1] = medio[1].reshape(n,m)
-plt.imshow(medio[1],cmap ='gray')
+print(medio.shape)
+huellaPromedio = medio[:,1].reshape(n,m)
+plt.imshow(huellaPromedio,cmap ='gray')
 plt.title('HuellaPromedioP1')
 plt.xticks([]),plt.yticks([])
-#plt.show()
+plt.show()
 """
+
+#Para cada persona, el tamaño de U es de [40000, 5], cada cinco columnas consecutivas corresponden a una persona.
+U = npy.zeros([resolution, 245], dtype = float) 
+
+#Para cada persona, el tamaño de S es [5], cada columna corresponde a una persona.
+S = npy.zeros([5, 245], dtype = float) 	
+
+#Para cada persona, el tamaño de V es [5,5], cada cinco columnas consecutivas corresponden a una persona.
+V = npy.zeros([5,245], dtype = float)  
+
+for i in range(49):
+	U[:,i*5:(i+1)*5], S[:,i*5:(i+1)*5], V[:,i*5:(i+1)*5] = npy.linalg.svd(MTraining[:, i*5: (i+1)*5], full_matrices = False)
+	
+
+#Visualización del rostro promedio
+print(U.shape)
+print(S.shape)
+print(V.shape)
+print("")
+print(S[:,15])
+print(V[:,10:15])
+
+
+"""
+huellaPropia = U[:,5].reshape(n,m)
+plt.imshow(huellaPropia,cmap ='gray')
+plt.title('HuellaPropiaHP1')
+plt.xticks([]),plt.yticks([])
+plt.show()
+"""
+
+
 
 
 
