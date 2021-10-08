@@ -115,22 +115,24 @@ plt.show()
 U = npy.zeros([resolution, 245], dtype = float) 
 
 #Para cada persona, el tamaño de S es [5], cada columna corresponde a una persona.
-S = npy.zeros([5, 245], dtype = float) 	
+S = npy.zeros([5, 49], dtype = float) 	
 
 #Para cada persona, el tamaño de V es [5,5], cada cinco columnas consecutivas corresponden a una persona.
 V = npy.zeros([5,245], dtype = float)  
 
 for i in range(49):
-	U[:,i*5:(i+1)*5], S[:,i*5:(i+1)*5], V[:,i*5:(i+1)*5] = npy.linalg.svd(MTraining[:, i*5: (i+1)*5], full_matrices = False)
-	
+	#U[:,i*5:(i+1)*5], S[:,i*5:(i+1)*5], V[:,i*5:(i+1)*5] = npy.linalg.svd(MTraining[:, i*5: (i+1)*5], full_matrices = False)
+	U[:,i*5:(i+1)*5], S[:,i], V[:,i*5:(i+1)*5] = npy.linalg.svd(MTraining[:, i*5: (i+1)*5], full_matrices = False)
 
 #Visualización del rostro promedio
 print(U.shape)
 print(S.shape)
 print(V.shape)
 print("")
-print(S[:,15])
-print(V[:,10:15])
+print(S[:,16])
+print(S.shape)
+
+#print(V[:,10:15])
 
 
 """
