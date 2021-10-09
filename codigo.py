@@ -131,7 +131,7 @@ plt.show()
 
 
 
-
+"""
 mExample = npy.zeros([5, 6], dtype = float)
 #print(mExample)
 
@@ -140,19 +140,8 @@ m1 = npy.array([  [1, 1, 1, 1, 1, 1],
 				  [3, 6, 3, 3, 3, 3],
 				  [4, 4, 4, 4, 4, 4], 
 				  [5, 5, 5, 5, 5, 5]])
-
-"""
-x0*c0+x1*c1+x2*c2
-				  [[2]
-				  [3]
-				  [18]
-				  [15]
-				  [2]]
-"""
 #print(m1)
 
-col0 = npy.zeros([5, 1], dtype = float)
-"""
 mExample[:,2] = m1[:,1]
 mExample[:,2] += m1[:,0]
 mExample[:,2] = mExample[:,2]/2
@@ -160,7 +149,7 @@ print(mExample)
 col0 = mExample[:,2]
 col0 += mExample[:,2]
 print(col0)
-"""
+
 #tv = npy.array([[2], [4], [6], [1], [3]])
 #print(tv)
 
@@ -177,25 +166,49 @@ def objective_fn(x):
 	dist = npy.linalg.norm(vecPrueba-(x0*a0 + x1*a1 + x2*a2 ))
 	return dist
 
-"""
-print(npy.max(U))#0.9999428217733894
-print(npy.min(U))#-0.030018814508134515
-print(npy.max(U) - npy.min(U))#1.029961636281524
-print(255.0/(npy.max(U) - npy.min(U)))#247.58203705589253
-
-
-startingX = npy.array([[(random.rand()*1.029961636281524) - 0.030018814508134515], 
-						[(random.rand()*1.029961636281524) - 0.030018814508134515], 
-						[(random.rand()*1.029961636281524) - 0.030018814508134515]]) 
-print(startingX)
-"""
-
 startingJ = npy.array([[random.randint(10)], 
 						[random.randint(10)], 
 						[random.randint(10)]])
 print(startingJ)
 
-result = minimize(objective_fn, startingJ, method = 'SLSQP')
+"""
+
+
+
+#print(npy.max(U))#0.9999428217733894
+#print(npy.min(U))#-0.030018814508134515
+#print(npy.max(U) - npy.min(U))#1.029961636281524
+#print(255.0/(npy.max(U) - npy.min(U)))#247.58203705589253
+
+
+startingX = npy.array([[(random.rand()*1.029961636281524) - 0.030018814508134515], 
+						[(random.rand()*1.029961636281524) - 0.030018814508134515], 
+						[(random.rand()*1.029961636281524) - 0.030018814508134515],
+						[(random.rand()*1.029961636281524) - 0.030018814508134515],
+						[(random.rand()*1.029961636281524) - 0.030018814508134515]]) 
+print('StartingX =')  
+print(startingX)
+
+
+basis = U[:,0:5]
+testImageVec = MTraining[:,5]
+def optimalRepresentation(startingX):
+	x0 = startingX[0]
+	x1 = startingX[1]
+	x2 = startingX[2]
+	x3 = startingX[3]
+	x4 = startingX[4]
+	dist = npy.linalg.norm(testImageVec-(x0*basis[:,0] + x1*basis[:,1] + x2*basis[:,2] + x3*basis[:,3] 
+							+ x4*basis[:,4]))
+	return dist
+
+result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
 print(result)
 
+#print(npy.linalg.norm(testImageVec-(startingX[0]*basis[:,0] + startingX[1]*basis[:,1] + startingX[2]*basis[:,2] 
+#									+ startingX[3]*basis[:,3] + startingX[4]*basis[:,4] )))
 
+print(npy.linalg.norm(testImageVec-(-34914.69762313*basis[:,0] + -5167.20989284*basis[:,1] + 994.96667506*basis[:,2] 
+									+ -14304.8489515*basis[:,3] + -2651.94732047*basis[:,4] )))
+
+									
