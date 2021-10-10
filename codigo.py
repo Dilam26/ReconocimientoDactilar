@@ -13,7 +13,7 @@ from numpy import random
 
 #Obtener direccion de las carpetas de las imagenes de entrenamiento
 path = []
-for i in os.listdir("C:/CDocumentos/V.U/Univalle/IngDeSistemas/MateriasYTemas/Semestre4/MN/trabajoFinalMN/code/huellas"): 
+for i in os.listdir("huellas"): 
 		path.append(os.getcwd()+"/huellas/"+i)
 
 #Cantidad total de imagenes de entrenamiento
@@ -186,12 +186,15 @@ startingX = npy.array([[(random.rand()*1.029961636281524) - 0.030018814508134515
 						[(random.rand()*1.029961636281524) - 0.030018814508134515],
 						[(random.rand()*1.029961636281524) - 0.030018814508134515],
 						[(random.rand()*1.029961636281524) - 0.030018814508134515]]) 
-print('StartingX =')  
-print(startingX)
 
+#testImageVec = MTraining[:,0]
 
-basis = U[:,0:5]
-testImageVec = MTraining[:,5]
+img = cv2.imread("22.jpg",0)
+#Convertir en array de tipo flotante y linealizarlo
+img_array = npy.array(img,dtype='float64').flatten()
+#Escribir los arreglos en columnas de la matriz de entrenamiento
+testImageVec = img_array[:]
+
 def optimalRepresentation(startingX):
 	x0 = startingX[0]
 	x1 = startingX[1]
@@ -202,13 +205,16 @@ def optimalRepresentation(startingX):
 							+ x4*basis[:,4]))
 	return dist
 
-result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
-print(result)
+for i in range(49):
+	basis = U[:,(i*5):(i+1)*5]
+	result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
+	if (result.fun < 1):
+		print('Existe')
 
 #print(npy.linalg.norm(testImageVec-(startingX[0]*basis[:,0] + startingX[1]*basis[:,1] + startingX[2]*basis[:,2] 
 #									+ startingX[3]*basis[:,3] + startingX[4]*basis[:,4] )))
 
-print(npy.linalg.norm(testImageVec-(-34914.69762313*basis[:,0] + -5167.20989284*basis[:,1] + 994.96667506*basis[:,2] 
-									+ -14304.8489515*basis[:,3] + -2651.94732047*basis[:,4] )))
+#print(npy.linalg.norm(testImageVec-(-34914.69762313*basis[:,0] + -5167.20989284*basis[:,1] + 994.96667506*basis[:,2] 
+#									+ -14304.8489515*basis[:,3] + -2651.94732047*basis[:,4] )))
 
 									
