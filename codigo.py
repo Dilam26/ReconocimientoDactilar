@@ -12,7 +12,7 @@ from numpy import random
 #Nataly Andrea Portillo Velasco - 1910313
 
 #Definicion de imagen de prueba
-img = cv2.imread("test/15.jpg",0)
+img = cv2.imread("test/12.jpg",0)
 img_array = npy.array(img,dtype='float64').flatten()
 testImageVec = img_array[:]
 
@@ -73,10 +73,24 @@ meanDistances = npy.empty([49], dtype = float)
 for i in range(49):
 	meanDistances[i] = distanceToMean(medio[:,i])
  
+meanDistances = npy.sort(meanDistances)
+
+def accesMean(firstMin, secondMin):
+	distance = abs(firstMin - secondMin)
+	print(distance)
+	if (distance > 1300):
+		print('**************')
+		print('¡¡¡¡ACCESO PERMITIDO POR PROMEDIOS!!!!')
+		print('**************')
+	else:
+		print('*****************')
+		print('¡¡¡¡ACCESO NO PERMITIDO POR PROMEDIOS!!!!')
+		print('*****************')
+
+accesMean(meanDistances[0],meanDistances[1])
+#print(meanDistances)
 print(meanDistances)
-#print(npy.min(meanDistances))
-print(npy.sort(meanDistances))
-print("15")
+print("12")
 
 
 
