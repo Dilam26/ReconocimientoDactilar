@@ -60,6 +60,31 @@ for i in range(49):
 	medio[:,i] = (sum/5)[:,0]
 	sum = npy.zeros(shape=(resolution,1))
 
+
+
+
+def distanceToMean(mean):
+	dist = npy.linalg.norm(testImageVec - mean)
+	return dist
+
+
+meanDistances = npy.empty([49], dtype = float)
+
+for i in range(49):
+	meanDistances[i] = distanceToMean(medio[:,i])
+ 
+print(meanDistances)
+#print(npy.min(meanDistances))
+print(npy.sort(meanDistances))
+print("15")
+
+
+
+
+
+
+
+"""
 #SVD
 #Para cada persona, el tamaño de U es de [40000, 5], cada cinco columnas consecutivas corresponden a una persona.
 U = npy.zeros([resolution, 245], dtype = float) 
@@ -99,11 +124,12 @@ for i in range(49):
 	result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
 	if (result.fun < 1):
 		print('**************')
-		print('¡¡¡¡EXISTE!!!!')
+		print('¡¡¡¡ACCESO PERMITIDO!!!!')
 		print('**************')
 		acceso = True
 									
 if not acceso:
 	print('*****************')
-	print('¡¡¡¡NO EXISTE!!!!')
+	print('¡¡¡¡ACCESO NO PERMITIDO!!!!')
 	print('*****************')
+"""
