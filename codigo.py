@@ -6,8 +6,13 @@ from matplotlib import pyplot as plt
 from scipy.optimize import minimize
 from numpy import random
 
+#INTEGRANTES
+#Diego Fabian Ledesma Motta - 1928161
+#Dilam Stiven Polanco Valencia - 1910316
+#Nataly Andrea Portillo Velasco - 1910313
+
 #Definicion de imagen de prueba
-img = cv2.imread("11.jpg",0)
+img = cv2.imread("22.jpg",0)
 img_array = npy.array(img,dtype='float64').flatten()
 testImageVec = img_array[:]
 
@@ -93,13 +98,12 @@ for i in range(49):
 	basis = U[:,(i*5):(i+1)*5]
 	result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
 	if (result.fun < 1):
+		print('**************')
+		print('¡¡¡¡EXISTE!!!!')
+		print('**************')
 		acceso = True
 									
-if (acceso):
-	print('**************')
-	print('¡¡¡¡EXISTE!!!!')
-	print('**************')
-else:
+if not acceso:
 	print('*****************')
 	print('¡¡¡¡NO EXISTE!!!!')
 	print('*****************')

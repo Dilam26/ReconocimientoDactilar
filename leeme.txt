@@ -1,0 +1,20 @@
+*******************************************
+**RECONOCIMIENTO BIOMETRICO APLICANDO SVD**
+*******************************************
+
+Para probar el programa usted puede ir a la linea 15 del codigo y cambiar el numero de la imagen de prueba, 
+para ello hemos apartado unas las siguientes imagenes y las hemos clasificado de la siguiente manera:
+
+IMAGENES DENTRO DE LA MATRIZ DE ENTRENAMIENTO (EXISTE)
+ -22.jpg
+ -31.jpg
+ -501.JPG
+
+SE DECIDIO EXTRAER LA CARPETA SUB1 DE LA MATRIZ DE ENTRENAMIENTO, POR ENDE LAS SIGUIENTES
+IMAGENES DARAN COMO RESULTADO QUE NO EXISTEN
+ -11.jpg
+ -12.jpg
+ -13.jpg
+ -14.jpg
+ -15.jpg
+
