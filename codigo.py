@@ -12,7 +12,7 @@ from numpy import random
 #Nataly Andrea Portillo Velasco - 1910313
 
 #Definicion de imagen de prueba
-img = cv2.imread("22.jpg",0)
+img = cv2.imread("test/15.jpg",0)
 img_array = npy.array(img,dtype='float64').flatten()
 testImageVec = img_array[:]
 

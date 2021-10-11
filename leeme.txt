@@ -3,7 +3,7 @@
 *******************************************
 
 Para probar el programa usted puede ir a la linea 15 del codigo y cambiar el numero de la imagen de prueba, 
-para ello hemos apartado unas las siguientes imagenes y las hemos clasificado de la siguiente manera:
+para ello hemos apartado las siguientes imagenes en la carpeta test y las hemos clasificado de la siguiente manera:
 
 IMAGENES DENTRO DE LA MATRIZ DE ENTRENAMIENTO (EXISTE)
  -22.jpg
