@@ -12,7 +12,7 @@ from numpy import random
 #Nataly Andrea Portillo Velasco - 1910313
 
 #Definicion de imagen de prueba
-img = cv2.imread("test/12.jpg",0)
+img = cv2.imread("test/501.jpg",0)
 img_array = npy.array(img,dtype='float64').flatten()
 testImageVec = img_array[:]
 
@@ -62,7 +62,7 @@ for i in range(49):
 
 
 
-
+#DETERMINAR ACCESO MEDIANTE PROMEDIOS
 def distanceToMean(mean):
 	dist = npy.linalg.norm(testImageVec - mean)
 	return dist
@@ -77,29 +77,20 @@ meanDistances = npy.sort(meanDistances)
 
 def accesMean(firstMin, secondMin):
 	distance = abs(firstMin - secondMin)
-	print(distance)
 	if (distance > 1300):
-		print('**************')
+		print('**************************************')
 		print('¡¡¡¡ACCESO PERMITIDO POR PROMEDIOS!!!!')
-		print('**************')
+		print('**************************************')
 	else:
-		print('*****************')
+		print('*****************************************')
 		print('¡¡¡¡ACCESO NO PERMITIDO POR PROMEDIOS!!!!')
-		print('*****************')
+		print('*****************************************')
 
 accesMean(meanDistances[0],meanDistances[1])
-#print(meanDistances)
-print(meanDistances)
-print("12")
 
 
+#DETERMINAR ACCESO MEDIANTE SVD
 
-
-
-
-
-"""
-#SVD
 #Para cada persona, el tamaño de U es de [40000, 5], cada cinco columnas consecutivas corresponden a una persona.
 U = npy.zeros([resolution, 245], dtype = float) 
 
@@ -137,13 +128,12 @@ for i in range(49):
 	basis = U[:,(i*5):(i+1)*5]
 	result = minimize(optimalRepresentation, startingX, method = 'SLSQP')
 	if (result.fun < 1):
-		print('**************')
+		print('************************')
 		print('¡¡¡¡ACCESO PERMITIDO!!!!')
-		print('**************')
+		print('************************')
 		acceso = True
 									
 if not acceso:
-	print('*****************')
+	print('***************************')
 	print('¡¡¡¡ACCESO NO PERMITIDO!!!!')
-	print('*****************')
-"""
+	print('***************************')
